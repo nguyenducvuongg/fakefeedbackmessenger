@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://kit.fontawesome.com/390e8fe137.js"></script>
+    <title>Facebook Messenger Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="controls">
+            <h2>Điều khiển Chat</h2>
+
+            <div class="control-group">
+                <label>Thời gian Status Bar:</label>
+                <input type="time" id="statusTime" value="11:05">
+            </div>
+
+            <div class="control-group">
+                <label>Pin (%):</label>
+                <input type="number" id="batteryLevel" value="93" min="1" max="100">
+            </div>
+
+            <hr style="margin: 20px 0; border-color: #444;">
+
+            <div class="control-group">
+                <label>Tên người nhận:</label>
+                <input type="text" id="contactName" value="sếp">
+            </div>
+
+            <div class="control-group">
+                <label>Avatar người nhận:</label>
+                <input type="file" id="contactAvatar" accept="image/*">
+            </div>
+
+            <div class="control-group">
+                <label>Tên người gửi 1:</label>
+                <input type="text" id="sender1Name" value="Tôi">
+            </div>
+
+            <div class="control-group">
+                <label>Avatar người gửi 1:</label>
+                <input type="file" id="sender1Avatar" accept="image/*">
+            </div>
+
+            <div class="control-group">
+                <label>Tên người gửi 2:</label>
+                <input type="text" id="sender2Name" value="Khách hàng">
+            </div>
+
+            <div class="control-group">
+                <label>Avatar người gửi 2:</label>
+                <input type="file" id="sender2Avatar" accept="image/*">
+            </div>
+
+            <hr style="margin: 20px 0; border-color: #444;">
+
+            <div class="control-group">
+                <label>Loại tin nhắn:</label>
+                <select id="messageType">
+                    <option value="text">Văn bản</option>
+                    <option value="image">Hình ảnh</option>
+                </select>
+            </div>
+
+            <div class="control-group" id="textGroup">
+                <label>Nội dung tin nhắn:</label>
+                <textarea id="messageText" placeholder="Nhập tin nhắn..."></textarea>
+            </div>
+
+            <div class="control-group" id="imageGroup" style="display: none;">
+                <label>Chọn hình ảnh:</label>
+                <input type="file" id="messageImage" accept="image/*">
+            </div>
+
+            <div class="control-group">
+                <label>Người gửi:</label>
+                <select id="messageSender">
+                    <option value="me">Tôi (bên phải)</option>
+                    <option value="other1">Người gửi 1 (bên trái)</option>
+                    <option value="other2">Người gửi 2 (bên trái)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label>Thời gian:</label>
+                <input type="time" id="messageTime" value="11:05">
+            </div>
+
+            <button class="btn" onclick="addMessage()">Thêm tin nhắn</button>
+            <button class="btn btn-danger" onclick="clearMessages()">Xóa tất cả</button>
+
+            <div class="message-list" id="messageList">
+                <div style="text-align: center; color: #888; font-size: 12px;">Chưa có tin nhắn nào</div>
+            </div>
+        </div>
+
+        <div class="phone-container" id="phoneContainer">
+            <div class="status-bar">
+                <div class="status-left">
+                    <span id="timeDisplay">11:05</span>
+                </div>
+                <div class="status-right">
+                    <i class="fa-solid fa-signal"></i>
+                    <i class="fa-solid fa-wifi"></i>
+                    <i class="fa-solid fa-battery-three-quarters"></i>
+                </div>
+            </div>
+
+            <div class="messenger-header">
+                <span class="back-btn">‹</span>
+                <div class="contact-info">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9IiM0RkMzRjciLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPgo8cGF0aCBkPSJNMTIgMTJjMi4yMSAwIDQtMS43OSA0LTRzLTEuNzktNC00LTQtNCAxLjc5LTQgNCAxLjc5IDQgNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOCA0djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+Cjwvc3ZnPgo8L3N2Zz4K"
+                        alt="Avatar" class="contact-avatar" id="contactAvatarImg">
+                    <span class="contact-name" id="contactNameDisplay">sếp</span>
+                </div>
+                <div class="header-actions">
+                    <img src="./phone-call.png" width="auto" height="24px" class="iconphone">
+                    <img src="./video-camera.png" width="30px" height="auto" color="blue" class="iconphone">
+                </div>
+            </div>
+
+            <div class="chat-container" id="chatContainer">
+                <!-- Messages will be added here -->
+            </div>
+
+            <div class="input-container">
+                <div class="input-icons">
+                    <i class="fa-solid fa-plus" class="input-icon"></i>
+                    <i class="fa-solid fa-camera" class="input-icon"></i>
+                    <i class="fa-solid fa-image" class="input-icon"></i>
+                    <i class="fa-solid fa-microphone" class="input-icon"></i>
+                </div>
+                <input type="text" class="message-input" placeholder="Aa">
+                <span class="send-btn">😊</span>
+            </div>
+        </div>
+    </div>
+
+    <button class="export-btn" onclick="exportImage()">Xuất hình ảnh</button>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
