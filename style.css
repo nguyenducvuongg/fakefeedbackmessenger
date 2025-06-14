@@ -92,6 +92,9 @@ body {
 }
 
 .phone-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     width: 360px;
     height: 640px;
     background: #000;
@@ -102,14 +105,14 @@ body {
 }
 
 .status-bar {
-    height: 44px;
+    height: 30px;
     background: #000;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
     color: white;
-    font-size: 17px;
+    font-size: 10px;
     font-weight: 600;
 }
 
@@ -124,83 +127,13 @@ body {
     gap: 5px;
 }
 
-.signal-bars {
-    display: flex;
-    gap: 2px;
-    margin-right: 5px;
-}
-
-.bar {
-    width: 3px;
-    background: white;
-    border-radius: 1px;
-}
-
-.bar:nth-child(1) {
-    height: 10px;
-}
-
-.bar:nth-child(2) {
-    height: 8px;
-}
-
-.bar:nth-child(3) {
-    height: 6px;
-}
-
-.bar:nth-child(4) {
-    height: 4px;
-}
-
-.wifi-icon {
-    width: 15px;
-    height: 11px;
-    margin-right: 5px;
-}
-
-.battery {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.battery-icon {
-    width: 24px;
-    height: 12px;
-    border: 1px solid white;
-    border-radius: 2px;
-    position: relative;
-}
-
-.iconphone {
-    color: #4fc3f7;
-}
-
-.battery-icon::after {
-    content: '';
-    position: absolute;
-    right: -3px;
-    top: 3px;
-    width: 2px;
-    height: 6px;
-    background: white;
-    border-radius: 0 1px 1px 0;
-}
-
-.battery-fill {
-    height: 100%;
-    background: white;
-    border-radius: 1px;
-    width: 93%;
-}
-
 .messenger-header {
-    height: 60px;
-    background: #1e1e1e;
+    height: 40px;
     display: flex;
     align-items: center;
     padding: 0 15px;
-    border-bottom: 1px solid #333;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
 }
 
 .back-btn {
@@ -288,15 +221,15 @@ body {
 }
 
 .message.sent .message-bubble {
-    background: #4fc3f7;
+    background: #007AFF;
     color: white;
-    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 4px;
 }
 
 .message.received .message-bubble {
-    background: #3a3b3c;
+    background: rgba(118, 118, 128, 0.24);
     color: white;
-    border-bottom-left-radius: 5px;
+    border-bottom-left-radius: 4px;
 }
 
 .message-image {
@@ -306,7 +239,7 @@ body {
 }
 
 .message-time {
-    font-size: 11px;
+    font-size: 7px;
     color: #8a8d91;
     margin-top: 5px;
     text-align: right;
@@ -318,25 +251,27 @@ body {
 
 .input-container {
     height: 50px;
-    background: #1e1e1e;
     display: flex;
     align-items: center;
     padding: 0 15px;
     gap: 10px;
+    backdrop-filter: blur(20px);
+    border-top: 0.5px solid rgba(255, 255, 255, 0.1);
 }
 
 .input-icons {
     display: flex;
-    gap: 12px;
+    gap: 8px;
+    color: #4fc3f7;
+    font-size: 15px;
+    cursor: pointer;
+
 }
 
-.input-icon {
-    color: #4fc3f7;
-    font-size: 20px;
-    cursor: pointer;
-}
+
 
 .message-input {
+    display: flex;
     flex: 1;
     background: #3a3b3c;
     border: none;
@@ -346,6 +281,16 @@ body {
     font-size: 14px;
 }
 
+.message-input input{
+    width: 100%;
+    background: #3a3b3c;
+    border: none;
+    font-size: ;
+}
+
+.message-input i{
+    color: #007AFF;
+}
 .send-btn {
     color: #4fc3f7;
     font-size: 18px;
@@ -408,6 +353,10 @@ body {
     font-size: 10px;
 }
 
+.chat-container{
+    height: 100%;
+}
+
 /* Scrollbar styling */
 .chat-container::-webkit-scrollbar {
     width: 3px;
@@ -421,6 +370,18 @@ body {
     background: #444;
     border-radius: 3px;
 }
+
+@keyframes messageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 @media (max-width: 768px) {
     .container {
